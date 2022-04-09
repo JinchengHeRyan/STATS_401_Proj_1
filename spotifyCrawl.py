@@ -17,6 +17,7 @@ spotify = spotipy.Spotify(
         client_id="60f4e82a30ec4a2ba657a2e8403e454a",
         client_secret="3acce0c5edde49d38e28d1c17b818c7c",
     ),
+    retries=1000000,
     requests_timeout=1000000,
 )
 
@@ -103,7 +104,10 @@ def writeMetric(file, metricInf, metric_space):
 writeMetric_Name(outFile, metric_space)
 
 for i, row in enumerate(tqdm(csv_input.iterrows(), ncols=80)):
-    trackID = row[1]["id"]
-    information = spotify.track(trackID)
-    metric = get_metric(information, metric_space, spotify)
-    writeMetric(outFile, metric, metric_space)
+    try:
+        trackID = row[1]["id"]
+        information = spotify.track(trackID)
+        metric = get_metric(information, metric_space, spotify)
+        writeMetric(outFile, metric, metric_space)
+    except:
+        continue
