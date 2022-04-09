@@ -3,6 +3,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import pandas as pd
 import json
 from tqdm import tqdm
+import math
 
 # input files path
 input_csv = "./data/data.csv"
@@ -15,7 +16,8 @@ spotify = spotipy.Spotify(
     client_credentials_manager=SpotifyClientCredentials(
         client_id="60f4e82a30ec4a2ba657a2e8403e454a",
         client_secret="3acce0c5edde49d38e28d1c17b818c7c",
-    )
+    ),
+    requests_timeout=1000000,
 )
 
 metric_space = [
