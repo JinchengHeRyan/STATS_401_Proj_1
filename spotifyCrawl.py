@@ -6,8 +6,8 @@ from tqdm import tqdm
 import math
 
 # input files path
-input_csv = "./data/data.csv"
-output_csv = "./out_data/outData.csv"
+input_csv = "./data/smallSet/data.csv"
+output_csv = "./out_data/smallSet/outData.csv"
 
 csv_input = pd.read_csv(input_csv)
 outFile = open(output_csv, "w")
@@ -17,7 +17,7 @@ spotify = spotipy.Spotify(
         client_id="60f4e82a30ec4a2ba657a2e8403e454a",
         client_secret="3acce0c5edde49d38e28d1c17b818c7c",
     ),
-    retries=1000000,
+    # retries=1000000,
     requests_timeout=1000000,
 )
 
@@ -31,10 +31,14 @@ metric_space = [
     "artist_popularity",
     "artist_genre",
     "album_release_date",
+    "danceability",
+    "valence",
+    "tempo",
+    "energy",
 ]
 
 
-def get_metric(track_information, metric_space, spotify):
+def get_metric(track_information, audio_info, metric_space, spotify):
     ans = dict()
     for metric in metric_space:
         if metric == "trackID":
@@ -77,8 +81,20 @@ def get_metric(track_information, metric_space, spotify):
 
         if metric == "album_release_date":
             rl_date = track_information["album"]["release_date"]
-            year = rl_date.split("-")[0]
-            ans[metric] = year
+            # year = rl_date.split("-")[0]
+            ans[metric] = rl_date
+
+        if metric == "danceability":
+            ans[metric] = audio_info["danceability"]
+
+        if metric == "valence":
+            ans[metric] = audio_info["valence"]
+
+        if metric == "tempo":
+            ans[metric] = audio_info["tempo"]
+
+        if metric == "energy":
+            ans[metric] = audio_info["energy"]
 
     return ans
 
@@ -107,7 +123,8 @@ for i, row in enumerate(tqdm(csv_input.iterrows(), ncols=80)):
     try:
         trackID = row[1]["id"]
         information = spotify.track(trackID)
-        metric = get_metric(information, metric_space, spotify)
+        info = spotify.audio_features(trackID)[0]
+        metric = get_metric(information, info, metric_space, spotify)
         writeMetric(outFile, metric, metric_space)
     except:
         continue
