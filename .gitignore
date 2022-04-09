@@ -1,3 +1,6 @@
 .idea/
 
 .DS_Store
+
+# Spotify API cache files
+.cache
