@@ -2,5 +2,7 @@
 
 .DS_Store
 
+out_data/
+
 # Spotify API cache files
 .cache
