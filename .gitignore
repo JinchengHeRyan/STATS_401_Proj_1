@@ -6,3 +6,5 @@ out_data/
 
 # Spotify API cache files
 .cache
+
+*.pyc
