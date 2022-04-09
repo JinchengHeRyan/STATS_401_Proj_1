@@ -27,6 +27,7 @@ metric_space = [
     "track_popularity",
     "artist_popularity",
     "artist_genre",
+    "album_release_date",
 ]
 
 
@@ -70,6 +71,11 @@ def get_metric(track_information, metric_space, spotify):
             else:
                 genre = genre_inf[0]
             ans[metric] = genre
+
+        if metric == "album_release_date":
+            rl_date = track_information["album"]["release_date"]
+            year = rl_date.split("-")[0]
+            ans[metric] = year
 
     return ans
 
