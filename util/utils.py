@@ -94,7 +94,6 @@ def writeMetric(file, metricInf, metric_space, batchsize):
     for i in range(batchsize):
         ans = str()
         for metric in metric_space:
-            print("len = {}, metric = {}".format(len(metricInf[metric]), metric))
             ans += str(metricInf[metric][i])
             ans += ","
         ans += "\n"
