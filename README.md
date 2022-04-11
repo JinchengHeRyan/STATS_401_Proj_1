@@ -4,7 +4,25 @@
 
 --------------------
 
-This repo can be used to crawl spotify data
+**This repo can be used to crawl spotify data, the crawled information is as the following:**
+
+```python
+metric_space = [
+    "trackID",
+    "artistID",
+    "artistName",
+    "album_artist_ID",
+    "album_artist_name",
+    "track_popularity",
+    "artist_popularity",
+    "artist_genre",
+    "album_release_date",
+    "danceability",
+    "valence",
+    "tempo",
+    "energy",
+]
+```
 
 --------------------
 
