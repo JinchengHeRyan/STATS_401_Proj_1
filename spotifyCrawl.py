@@ -92,6 +92,7 @@ if __name__ == "__main__":
     batchsize = args.batchsize
     id_loader = csvTrackIdLoader(csvPath=input_csv, batchSize=batchsize)
 
+    # Begin crawling
     for i, trackIDs in enumerate(tqdm(id_loader, ncols=80)):
         try:
             tracks_info = spotify.tracks(trackIDs)

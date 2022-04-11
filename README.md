@@ -36,6 +36,8 @@ optional arguments:
                         client secret of your spotify development account
 ```
 
+Run the script:
+
 ```shell
 python spotifyCrawl.py \
 --inputCSV <input path of your csv file> \
@@ -46,6 +48,7 @@ python spotifyCrawl.py \
 ```
 
 All the above arguments are optional, if not being provided, the default value is set as the following:
+
 ```
 inputCSV = "./data/smallSet/data.csv"
 outputDir = "./out_data/"
