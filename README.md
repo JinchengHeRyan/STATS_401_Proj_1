@@ -76,3 +76,5 @@ clientSecret = "bff923971e354eb4b13499a1b1d67d14"
 ```
 
 **Please be aware that my clientID has limitation of the rate to crawl data and may cause failure**
+
+Our crawled data are stored in `archivedData/` directory. 
